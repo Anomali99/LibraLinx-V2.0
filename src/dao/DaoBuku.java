@@ -330,4 +330,28 @@ public class DaoBuku implements ServiceBuku {
         return i;
     }
 
+    @Override
+    public String getAllPengarang(String id) {
+        List<String> list = ambilPengarang(id);
+        String pengarang = "";
+        for(String peng : list){
+                if(pengarang.isEmpty())
+                    pengarang = peng;
+                else 
+                    pengarang += ", " + peng;
+            }
+        return pengarang;}
+
+    @Override
+    public String getAllKategori(String id) {
+        List<String> list = ambilKategori(id);
+        String kategori = "";
+        for(String kat : list){
+                if(kategori.isEmpty())
+                    kategori = kat;
+                else 
+                    kategori += ", " + kat;
+            }
+        return kategori;}
+
 }

@@ -28,4 +28,5 @@ public interface ServiceSkripsi {
     String nomer();
     int jumlahSkripsi();
     int jmlPipinjam(String id);
+    String getAllKategori(String id);
 }

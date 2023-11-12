@@ -299,4 +299,17 @@ public class DaoSkripsi implements ServiceSkripsi {
         return i;
     }
 
+    @Override
+    public String getAllKategori(String id) {
+        List<String> list = ambilKategori(id);
+        String kategori = "";
+        for(String kat : list){
+                if(kategori.isEmpty())
+                    kategori = kat;
+                else 
+                    kategori += ", " + kat;
+            }
+        return kategori;
+    }
+
 }

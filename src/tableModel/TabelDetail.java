@@ -4,13 +4,19 @@
  */
 package tableModel;
 
+import dao.DaoBuku;
+import dao.DaoSkripsi;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
+import parsisten.Buku;
 import parsisten.DetailBuku;
 import parsisten.DetailSkripsi;
 import parsisten.Peminjaman;
+import parsisten.Skripsi;
+import servis.ServiceBuku;
+import servis.ServiceSkripsi;
 
 /**
  *
@@ -22,6 +28,8 @@ public class TabelDetail extends AbstractTableModel{
     private List<DetailBuku> listBuku = new ArrayList();
     private List<DetailSkripsi> listSkripsi = new ArrayList();
     private final String[] headerName = {"NO", "ID Buku", "Judul", "Subjudul", "Kategori", "Bahasa", "Pengarang","Jumlah"};
+    private ServiceBuku servB = new DaoBuku();
+    private ServiceSkripsi servS = new DaoSkripsi();
     
     
     
@@ -60,9 +68,9 @@ public class TabelDetail extends AbstractTableModel{
                     case 0 : return listBuku.get(rowIndex).getBuku().getIdBuku();
                     case 1 : return listBuku.get(rowIndex).getBuku().getJudul();
                     case 2 : return listBuku.get(rowIndex).getBuku().getSubjudul();
-                    case 3 : return listBuku.get(rowIndex).getBuku().getAllKategori();
+                    case 3 : return servB.getAllKategori(listBuku.get(rowIndex).getBuku().getIdBuku());
                     case 4 : return listBuku.get(rowIndex).getBuku().getBahasa();
-                    case 5 : return listBuku.get(rowIndex).getBuku().getAllPengarang();
+                    case 5 : return servB.getAllPengarang(listBuku.get(rowIndex).getBuku().getIdBuku());
                     case 6 : return listBuku.get(rowIndex).getJumlah();
                     default : return null;
                 }
@@ -72,7 +80,7 @@ public class TabelDetail extends AbstractTableModel{
                     case 0 : return listSkripsi.get(newRowIndex).getSkripsi().getIdSkripsi();
                     case 1 : return listSkripsi.get(newRowIndex).getSkripsi().getJudul();
                     case 2 : return null;
-                    case 3 : return listSkripsi.get(newRowIndex).getSkripsi().getAllKategori();
+                    case 3 : return servS.getAllKategori(listSkripsi.get(newRowIndex).getSkripsi().getIdSkripsi());
                     case 4 : return listSkripsi.get(newRowIndex).getSkripsi().getBahasa();
                     case 5 : return listSkripsi.get(newRowIndex).getSkripsi().getPenulis();
                     case 6 : return listSkripsi.get(newRowIndex).getJumlah();

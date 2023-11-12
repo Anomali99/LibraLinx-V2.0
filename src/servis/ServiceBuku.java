@@ -26,5 +26,7 @@ public interface ServiceBuku {
     List<Buku> ambilData();
     int jumlahBuku();
     int jmlDipinjam(String id);
+    String getAllPengarang(String id);
+    String getAllKategori(String id);
     String nomer();
 }
